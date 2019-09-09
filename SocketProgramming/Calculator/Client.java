@@ -24,11 +24,25 @@ public class Client
                 int choice = (int)input.nextDouble();
                 if(choice==10){ print.println("Good Bye.."); break;}
                 outServer.println(choice);
-                print.println(++operation + " " +  inServer.nextLine());
+                if(choice==5 || choice==7 || choice==9){
+                    print.println("Enter One Digits : ");
+                    Double x = input.nextDouble();
+                    outServer.println(x);
+                }
+                else{
+                    print.println("Enter two Digits : ");
+                    Double x = input.nextDouble();
+                    Double y = input.nextDouble();
+                    outServer.println(x);
+                    outServer.println(y);
+                }
+                
+               
+                print.println("\b" +  inServer.nextLine());
                 
             }
           
-         
+
             sock.close();
         }
         catch (IOException ioe) {
