@@ -26,8 +26,15 @@ public class Client
                 outServer.println(choice);
                 if(choice==5 || choice==7 || choice==9){
                     print.println("Enter One Digits : ");
-                    Double x = input.nextDouble();
-                    outServer.println(x);
+                    try{
+                        Double x = input.nextDouble();
+                        outServer.println(x);
+                    }
+                    catch(Exception e)
+                    {
+                        String error = inServer.nextLine();
+                        outServer.println(error);
+                    }
                 }
                 else{
                     print.println("Enter two Digits : ");

@@ -34,32 +34,33 @@ public class Server
             System.out.println("Client Connected " + socket);
             try{
                 List<Double> array = new ArrayList<>();
+                int index = 1;
                 var inClient  = new Scanner(socket.getInputStream());
                 var outClient = new PrintWriter(socket.getOutputStream(),true);
                 var input = new Scanner(System.in);
                 var print = new PrintWriter(System.out,true);
                 while(inClient.hasNextDouble()){
-                    Double choice = inClient.nextDouble();
+                    int choice = (int)inClient.nextDouble();
                     print.println(choice);
                     if(choice==1){
                         Double x = inClient.nextDouble();
                         Double y = inClient.nextDouble();
                         Double ans = x+y;
-                        outClient.println("Addition = " + ans);
+                        outClient.println("Addition = " + ans + " id: "+ index++);
                         array.add(ans);
                     }
                     if(choice==2){
                         Double x = inClient.nextDouble();
                         Double y = inClient.nextDouble();
                         Double ans = x-y;
-                        outClient.println("Substraction = " + ans);
+                        outClient.println("Substraction = " + ans  + " id: "+ index++);
                         array.add(ans);
                     }
                     if(choice==3){
                         Double x = inClient.nextDouble();
                         Double y = inClient.nextDouble();
                         Double ans = x*y;
-                        outClient.println("Multiplication = " + ans);
+                        outClient.println("Multiplication = " + ans + " id: "+ index++);
                         array.add(ans);
                     }
                     if(choice==4){
@@ -67,7 +68,7 @@ public class Server
                         Double y = inClient.nextDouble();
                         if(y!=0){
                              Double ans = x/y;
-                             outClient.println("Division = " + ans);
+                             outClient.println("Division = " + ans  + " id: "+ index++);
                              array.add(ans);
                         }
                         else
@@ -76,33 +77,41 @@ public class Server
                     if(choice==5){
                         Double x = inClient.nextDouble();
                         Double ans = x*x;
-                        outClient.println("Sqaure = " + ans);
+                        outClient.println("Sqaure = " + ans  + " id: "+ index++);
                         array.add(ans);
                     }
                     if(choice==6){
                         Double x = inClient.nextDouble();
                         Double y = inClient.nextDouble();
                         Double ans = Math.pow(x,y);
-                        outClient.println("Power = " + ans);
+                        outClient.println("Power = " + ans + " id: "+ index++);
                         array.add(ans);
                     }
                     if(choice==7){
                         Double x = inClient.nextDouble();
                         Double ans = Math.sqrt(x);
-                        outClient.println("Square Root = " + ans);
+                        outClient.println("Square Root = " + ans + " id: "+ index++);
                         array.add(ans);
                     }
                     if(choice==8){
                         Double x = inClient.nextDouble();
                         Double y = inClient.nextDouble();
                         Double ans = Math.log(x)/Math.log(y);
-                        outClient.println("Log = " + ans);
+                        outClient.println("Log = " + ans + " id: "+ index++);
                         array.add(ans);
                     }
                      if(choice==9){
                         int x = (int)inClient.nextDouble();
-                        Double ans = array.get(x-1);
-                        outClient.println("Answer = " + ans);
+                        try{
+                            Double ans = array.get(x-1);
+                            outClient.println("Answer = " + ans);
+                        }
+                        catch(Exception e)
+                        {
+                            String error = "Wrong Id, Answer Not Found. ";
+                            print.println(error);
+                            outClient.println(error);
+                        }
                     }
                     
                 }
