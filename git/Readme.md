@@ -1,3 +1,9 @@
+## Rename a branch
+1. If you are in same branch which you want to rename then run `git branch -m <new_branch_name>`.
+2. If you are in different different branch then run `git branch -m <old_branch_name> <new_branch_name>`.
+3. If you want to delete the old branch and push with new name then run `git push origin :<old_branch_name> <new_branch_name>`.
+4. To update the upstream run `git push origin -u <new_branch_name>`.
+5. If you don't want to delete the old branch name and update the upstream by new branch name run `git push origin HEAD` (make sure that you are in new branch).
 
 
 ## Switching back to previous commit/Deleting the commits
