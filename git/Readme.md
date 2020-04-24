@@ -1,3 +1,11 @@
+## Creating a new branch
+- Move to that branch from where you want to create branch.
+- `git checkout <branch_name>` For moving to specfic branch run .
+-  `git branch <branch_name>` For creating a new branch. And move to that branch by run `git checkout <branch_name>`.
+- `git checkout -b <branch_name>` For creating and moving to new branch .
+- A new branch will be created from where these commands are run like if you are in master branch from there you run those command then from master branch a new branch will be created.
+
+
 ## Rename a branch
 1. If you are in same branch which you want to rename then run `git branch -m <new_branch_name>`.
 2. If you are in different different branch then run `git branch -m <old_branch_name> <new_branch_name>`.
@@ -9,6 +17,12 @@
 ## Switching back to previous commit/Deleting the commits
 - `git reset --hard <commit_id>` For moving Head to specific commit. After runnning this command Head is pointing to that specfic commit.
 - `git push origin/<branch_name>` You can run this command for deleting all the above commit lies above the pointing Head. And applied to your repo.
+
+
+## Copy a commit from one branch to other branch
+- copy the commit SHA value.
+- `git checkout <branch_name>` move to that branch where you want to copy the commit.
+- `git cherry-pick <commit_SHA_vale>` run the command to copy the commit in the branch. 
 
 
 ## For viewing the graph of commits
