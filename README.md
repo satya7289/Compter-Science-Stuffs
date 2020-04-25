@@ -1,1 +1,1 @@
-# operating system
+Computer Science Stuffs.
