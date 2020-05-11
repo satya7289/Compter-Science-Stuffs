@@ -66,7 +66,7 @@ class BlockChain():
     generateGenesisBlock: Generate the first block hash.
     '''
     def generateGenesisBlock(self):
-        return Block('11/05/2020',[Transaction(None,None,0),])
+        return Block('11/05/2020',Transaction(None,None,0))
     
     '''
     minePendingTransatin: add panding transaction(done by miner and get his reward).
@@ -91,6 +91,7 @@ class BlockChain():
             block = Block(datetime.now(),pT,previousHash)
             block.mineBlock(self.difficulty)
             self.chain.append(block)
+            # print(type(pT),pT,"+++++++")
         self.pendingTransations=[Transaction(None,mining_reward_address,self.mining_reward)]
         print("Block is mined. Reward ammount id ", self.mining_reward)
 
@@ -105,11 +106,10 @@ class BlockChain():
     def getBalance(self,address):
         balance=0
         for b in self.chain:
-            for t in b.transactionsList:
-                if t.to_address == address:
-                    balance += t.amount
-                if t.from_address == address:
-                    balance -= t.amount
+            if b.transactionsList.to_address == address:
+                balance += b.transactionsList.amount
+            if b.transactionsList.from_address == address:
+                balance -= b.transactionsList.amount
         return balance 
     '''
     isChainValid: It checks if Block is valid or not means not modified by another user.
