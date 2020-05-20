@@ -30,6 +30,11 @@
 - `git log --graph --all`
 
 
+## Checkout a github pull request
+- `git fetch origin pull/<pull_request_id>/head:<branch_name>`
+- `git checkout <branch_name>`
+
+
 ## Squash multiple Commits into 1 commit
 - `git log --pretty=oneline --abbrev-commit` This git command is useful for logging commits with it's abbrevation.
 - `git rebase -i HEAD~n` This git command is used for rebasing. Here n refers to before n Head. Suppose you want to combine last 4 commits then here n will be 4.
