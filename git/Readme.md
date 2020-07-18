@@ -18,6 +18,10 @@
 - `git reset --hard <commit_id>` For moving Head to specific commit. After runnning this command Head is pointing to that specfic commit.
 - `git push origin/<branch_name>` You can run this command for deleting all the above commit lies above the pointing Head. And applied to your repo.
 
+## Switching back to previous commit after rebaseing 
+- `git reflog <branch_name>` .
+- `git reset — hard 129e6d3` .
+
 
 ## Copy a commit from one branch to other branch
 - copy the commit SHA value.
