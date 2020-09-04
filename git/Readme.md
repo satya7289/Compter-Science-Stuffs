@@ -46,5 +46,5 @@ After running this command an interactive shell will be open. Change last commit
 - `git push origin/<branch_name> --force` for pushing this to repo.
 - `git rebase --abort` for aborting the rebasing.
 - `git rebase --edit` for editing the rebasing.
-- `git rebase --continue` If found something conflicting issue on the above process, then first resolve the conflict and commit it.
+- `git rebase --continue` If found something conflicting issue on the above process, then first resolve the conflict and run the command.
 
