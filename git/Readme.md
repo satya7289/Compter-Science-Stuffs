@@ -48,3 +48,6 @@ After running this command an interactive shell will be open. Change last commit
 - `git rebase --edit` for editing the rebasing.
 - `git rebase --continue` If found something conflicting issue on the above process, then first resolve the conflict and run the command.
 
+## Remove file from git history
+- `git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch path_to_file" HEAD`
+
