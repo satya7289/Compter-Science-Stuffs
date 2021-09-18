@@ -50,4 +50,10 @@ After running this command an interactive shell will be open. Change last commit
 
 ## Remove file from git history
 - `git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch path_to_file" HEAD`
+- `git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch <path to the file or directory>' --prune-empty --tag-name-filter cat -- --all`
+- git filter repo
+   ```
+     pip3 install git-filter-repo
+     git filter-repo --path <path to the file or directory> --invert-paths
+   ```
 
