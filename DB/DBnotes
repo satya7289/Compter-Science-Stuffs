@@ -1,0 +1,14 @@
+1> show databases;
+2> use <database_name>
+3> show tables;
+4> create user <user_name,@,localhost> identified by <password>
+5> grant all privileges on <*.*> to <user_name>
+6> desc <table_name>
+7> create table()
+8> insert into <table_name> (<col>) values(<values>)
+9> select * from <table_name>
+10> select database()
+11> alter <table_name> add FOREIGN KEY(<col_name>) REFERENCES <table_name>(<col_name>) 
+12> alter <table_name> add FOREIGN KEY(<col_name>) REFERENCES <table_name>(<col_name>) ON DELETE <references_option> ON UPDATE <references_option>
+13> select * from <table_1> JOIN <table_2> ON <table1.id>=<table2.id>;
+14> all,any,not in,in, count(),avg(<col_name>), group by <col_name>, having <property/true/false>,max(<col_name>),min(<col_name>),exits,not exits

@@ -1,0 +1,35 @@
+  Route::any('job-list', 'JobController@listUserJob'); View not found Frontend.job.job-list.
+
+
+    Route::get('posted-job-list', 'JobController@listPostedJob');->listpostedjob not found method.
+
+ send_mail_job->    Route::post('follow-post-job', 'JobController@followPostJob');-> not used in the code.
+postonsocial ->function not used anywhere in code
+
+
+Admincontroller->updateAdmin->admin-email-updated-password,admin-updated-password-> email template not exits.
+
+AdminController->updateGeneralUser-> not used anywhere in the code.
+AdminController->updateRegisteredUser-> not used anywhere in the code.
+
+Issue::1488->
+Crone function as well as route related to crone deleted successfully.:
+delete job function not found in meetupController.
+
+Issue in December------------------------------------------
+1148
+843
+
+
+
+
+
+
+Filter
+
+
+
+edit-question-> if image is not seleted then, error give of image. 
+
+
+eventController,educationController::makegroupreport (does not store make report)
