@@ -22,10 +22,10 @@ DUMP_PATH=$DUMP_PATH
 #echo "hello" | cat > $DUMP_PATH
 
 # dump database
-pg_dump -U $DB_USER $DB_NAME>$DUMP_PATH -W
+pg_dump -U $DB_USER $DB_NAME>$DUMP_PATH
 
 # sync to s3
-aws s3 cp $SUMP_PATH s3://$BUCKET_NAME 
+aws s3 cp $DUMP_PATH s3://$BUCKET_NAME 
 
 # remove dump path
 rm $DUMP_PATH
