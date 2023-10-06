@@ -1,3 +1,8 @@
+#################
+# chmod +x snapshot.sh
+# to run: PGPASSWORD ./snapshot.sh
+#################
+
 #!/bin/bash
 
 DIR=$(dirname "${BASH_SOURCE[0]}")
