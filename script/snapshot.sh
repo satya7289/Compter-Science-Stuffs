@@ -1,6 +1,6 @@
 #################
 # chmod +x snapshot.sh
-# to run: PGPASSWORD ./snapshot.sh
+# to run: PGPASSWORD=password ./snapshot.sh
 #################
 
 #!/bin/bash
