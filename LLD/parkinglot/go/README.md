@@ -1,7 +1,7 @@
-# parking alot
+# parking lot
 
 ## problem statement
-- Design parking alot for multi-floor 
+- Design parking lot for multi-floor 
 
 
 ### Requirements
