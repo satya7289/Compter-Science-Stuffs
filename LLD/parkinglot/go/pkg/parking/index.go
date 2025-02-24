@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"parkingalot/pkg/floor"
 	"parkingalot/pkg/vehicle"
-
-	"github.com/google/uuid"
 )
 
 var handler = map[int]func(){
@@ -20,7 +18,7 @@ var (
 	vehicleSpot    map[string]floor.Ispot
 )
 
-func InitParkingAlot() {
+func InitParkinglot() {
 	floorList = append(floorList, floor.NewFloor(0, 3, map[floor.SpotName]int{floor.Small: 10, floor.Large: 5, floor.Electric: 2}))
 	floorList = append(floorList, floor.NewFloor(1, 3, map[floor.SpotName]int{floor.Small: 10, floor.Large: 5, floor.Electric: 2}))
 
@@ -40,14 +38,16 @@ func InitParkingAlot() {
 		if fn, ok := handler[op]; ok {
 			fn()
 		} else {
+			fmt.Println("Thankyou!!!")
 			return
 		}
 	}
 }
 
 func checkInHandler() {
-	veh := chooseVehicle()
-	newVeh := vehicle.NewVehicle(vehicle.GetAllSupportedVehicleName()[veh], uuid.NewString())
+	sno := chooseVehicle()
+	vehicleId := enterVehicleNo()
+	newVeh := vehicle.NewVehicle(vehicle.GetAllSupportedVehicleName()[sno], vehicleId)
 
 	var spot floor.Ispot
 	var ok bool
@@ -65,16 +65,26 @@ func checkInHandler() {
 	}
 	spot.ParkVehicle(newVeh)
 	vehicleSpot[newVeh.GetId()] = spot
-	fmt.Printf("Successfully %v:%v parked on %v floor: %v", newVeh, newVeh.GetId(), fNo, spot.SpotId())
+	fmt.Printf("Successfully %v:%v parked on floor: %v, spotId: %v\n", newVeh, newVeh.GetId(), fNo, spot.SpotId())
 }
 
 func checkoutHandler() {
-
+	vehicleId := enterVehicleNo()
+	spot, ok := vehicleSpot[vehicleId]
+	if !ok {
+		fmt.Println("No vehicle found")
+		return
+	}
+	veh := spot.GetParkedVehicle()
+	spot.UnParkVehicle()
+	fmt.Printf("Successfully checkout %v, spotId: %v\n", veh.GetId(), spot.SpotId())
 }
 
 func displayFloor() {
-	floorNo := chooseFloor()
-	floorList[floorNo].Display()
+	f := chooseFloor()
+	if f != nil {
+		f.Display()
+	}
 }
 
 // helper
@@ -91,7 +101,7 @@ Choose options ->
 	return op
 }
 
-func chooseFloor() int {
+func chooseFloor() floor.IFloor {
 	var sno int
 	op := ""
 	for i := range floorList {
@@ -105,10 +115,10 @@ Choose floor No:
 `, op)
 	fmt.Scan(&sno)
 	if sno == -1 {
-		return -1
+		return nil
 	}
 	if sno >= 0 && sno < len(floorList) {
-		return sno
+		return floorList[sno]
 	}
 	return chooseFloor()
 }
@@ -129,8 +139,16 @@ Choose Vehicle:
 	if sno == -1 {
 		return -1
 	}
-	if sno >= 0 && sno < len(vehicle.GetAllSupportedVehicleName()) {
-		return sno
+	if sno < 0 || sno >= len(vehicle.GetAllSupportedVehicleName()) {
+		return chooseVehicle()
 	}
-	return chooseVehicle()
+	return sno
+}
+
+func enterVehicleNo() (vehicleId string) {
+	fmt.Printf(`
+Enter Vehicle No: 	
+`)
+	fmt.Scanf("%s", &vehicleId)
+	return
 }

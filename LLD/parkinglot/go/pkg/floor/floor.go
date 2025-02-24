@@ -23,13 +23,15 @@ func NewFloor(id int, entryExitDoor int, sMap map[SpotName]int) IFloor {
 		entryDoors: make([]IDoor, 0),
 		exitDoors:  make([]IDoor, 0),
 	}
-	for i := 0; i < entryExitDoor; i++ {
+	for range entryExitDoor {
 		f.AddDoor(Entry, NewDoor(Entry))
 		f.AddDoor(Exit, NewDoor(Exit))
 	}
+	sno := 1
 	for spotName, count := range sMap {
 		for i := 0; i < count; i++ {
-			f.AddSpot(NewSpot(spotName))
+			f.AddSpot(NewSpot(spotName, fmt.Sprintf("%v", sno)))
+			sno++
 		}
 	}
 
@@ -79,7 +81,11 @@ func (f *Floor) Display() {
 
 	fmt.Println("spot list")
 	for _, s := range f.spots {
-		fmt.Println("spot no -> ", s.SpotId(), "| occupied: ", s.Occupied())
+		if s.Occupied() {
+			fmt.Printf("spot not -> %v | occupied: %v | spot name: %v | vehicleId: %v\n", s.SpotId(), s.Occupied(), s.GetSpotName(), s.GetParkedVehicle().GetId())
+		} else {
+			fmt.Printf("spot not -> %v | occupied: %v | spot name: %v\n", s.SpotId(), s.Occupied(), s.GetSpotName())
+		}
 	}
 
 	fmt.Println("# Entry door: ", len(f.entryDoors))
