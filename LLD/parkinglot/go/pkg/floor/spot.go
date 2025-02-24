@@ -54,6 +54,7 @@ func (l *LargeSpot) ParkVehicle(v vehicle.IVehicle) bool {
 	return true
 }
 func (l *LargeSpot) UnParkVehicle() {
+	l.v.SetExitTime(time.Now())
 	l.v = nil
 }
 func (l *LargeSpot) GetSpotName() SpotName              { return Large }

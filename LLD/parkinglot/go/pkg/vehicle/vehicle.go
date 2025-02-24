@@ -21,8 +21,11 @@ func GetAllSupportedVehicleName() []VehicleName {
 
 type IVehicle interface {
 	GetId() string
+	GetVehicleName() VehicleName
 	GetEntryTime() time.Time
 	SetEntryTime(time.Time)
+	GetExitTime() time.Time
+	SetExitTime(time.Time)
 	vehicle()
 }
 
@@ -39,24 +42,30 @@ func NewVehicle(n VehicleName, id string) IVehicle {
 
 // car
 type CarVehicle struct {
-	id        string
-	entryTime time.Time
+	id                  string
+	entryTime, exitTime time.Time
 }
 
-func (c *CarVehicle) vehicle()                 {}
-func (c *CarVehicle) GetId() string            { return c.id }
-func (c *CarVehicle) String() string           { return string(Car) }
-func (c *CarVehicle) GetEntryTime() time.Time  { return c.entryTime }
-func (c *CarVehicle) SetEntryTime(t time.Time) { c.entryTime = t }
+func (c *CarVehicle) vehicle()                    {}
+func (c *CarVehicle) GetId() string               { return c.id }
+func (c *CarVehicle) String() string              { return string(Car) }
+func (c *CarVehicle) GetEntryTime() time.Time     { return c.entryTime }
+func (c *CarVehicle) SetEntryTime(t time.Time)    { c.entryTime = t }
+func (c *CarVehicle) GetExitTime() time.Time      { return c.exitTime }
+func (c *CarVehicle) SetExitTime(t time.Time)     { c.exitTime = t }
+func (c *CarVehicle) GetVehicleName() VehicleName { return Car }
 
 // bike
 type BikeVehicle struct {
-	id        string
-	entryTime time.Time
+	id                  string
+	entryTime, exitTime time.Time
 }
 
-func (c *BikeVehicle) vehicle()                 {}
-func (c *BikeVehicle) GetId() string            { return c.id }
-func (c *BikeVehicle) String() string           { return string(Bike) }
-func (c *BikeVehicle) GetEntryTime() time.Time  { return c.entryTime }
-func (c *BikeVehicle) SetEntryTime(t time.Time) { c.entryTime = t }
+func (c *BikeVehicle) vehicle()                    {}
+func (c *BikeVehicle) GetId() string               { return c.id }
+func (c *BikeVehicle) String() string              { return string(Bike) }
+func (c *BikeVehicle) GetEntryTime() time.Time     { return c.entryTime }
+func (c *BikeVehicle) SetEntryTime(t time.Time)    { c.entryTime = t }
+func (c *BikeVehicle) GetExitTime() time.Time      { return c.exitTime }
+func (c *BikeVehicle) SetExitTime(t time.Time)     { c.exitTime = t }
+func (c *BikeVehicle) GetVehicleName() VehicleName { return Bike }

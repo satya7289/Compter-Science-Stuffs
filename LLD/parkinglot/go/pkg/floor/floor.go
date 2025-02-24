@@ -2,15 +2,15 @@ package floor
 
 import (
 	"fmt"
-	"parkingalot/pkg/vehicle"
 )
 
 type FloorNumber int
 
 type IFloor interface {
+	GetFloorNo() int
 	AddSpot(Ispot)
 	AllSpot() []Ispot
-	AvaliableSpot(vehicle.IVehicle) (Ispot, bool)
+	AvaliableSpot() (Ispot, bool)
 	AddDoor(DoorType, IDoor)
 	EntryDoorList() []IDoor
 	ExitDoorList() []IDoor
@@ -65,7 +65,7 @@ func (f *Floor) AllSpot() []Ispot {
 }
 
 // AvaliableSpot implements IFloor.
-func (f *Floor) AvaliableSpot(v vehicle.IVehicle) (Ispot, bool) {
+func (f *Floor) AvaliableSpot() (Ispot, bool) {
 	for _, s := range f.spots {
 		if !s.Occupied() {
 			return s, true
@@ -102,4 +102,8 @@ func (f *Floor) EntryDoorList() []IDoor {
 // ExitDoorList implements IFloor.
 func (f *Floor) ExitDoorList() []IDoor {
 	return f.exitDoors
+}
+
+func (f *Floor) GetFloorNo() int {
+	return f.id
 }
