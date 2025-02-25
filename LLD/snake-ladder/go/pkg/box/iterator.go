@@ -23,15 +23,18 @@ func (it *iterator) HasNext(n int) bool {
 
 func (it *iterator) GetNext(n int) *Coordinate {
 	it.idx += n
-	return it.c[it.idx]
+	return it.c[it.idx-1]
 }
 
 func (it *iterator) IsLast() bool {
-	return it.idx == len(it.c)-1
+	return it.idx == len(it.c)
 }
 
 func (it *iterator) Current() *Coordinate {
-	return it.c[it.idx]
+	if it.idx == 0 {
+		return nil
+	}
+	return it.c[it.idx-1]
 }
 
 func (it *iterator) SetIdxByCoordinate(c *Coordinate) {

@@ -32,30 +32,34 @@ func StartGame() {
 		fmt.Printf(`
 Player %v is playing. Current position: %v;
 Enter any key to roll dice:
-`, p.Name, p.Iterator.Current().String())
+`, p.Name, p.Iterator.Current())
 
 		var x rune
 		fmt.Scan(&x)
 		n := 1 + rand.Intn(6-1+1)
 
 		fmt.Println("Dice output: ", n)
-		if ok := p.Iterator.HasNext(n); !ok {
+		if p.Iterator.Current() == nil && n != 6 {
+			fmt.Println("To start play 6 should come")
+		} else if ok := p.Iterator.HasNext(n); !ok {
 			fmt.Println("No futher excceded")
 		} else {
-			fmt.Println("Moved to Position: ", p.Iterator.GetNext(n).String())
+			fmt.Println("Moved to Position: ", p.Iterator.GetNext(n))
 		}
 
 		if s, ok := b.CheckSnake(p.Iterator.Current()); ok {
 			p.Iterator.SetIdxByCoordinate(s.End)
-			fmt.Println("Snake bite, Updated Position: ", p.Iterator.Current().String())
+			fmt.Println("Snake bite, Updated Position: ", p.Iterator.Current())
 		} else if s, ok := b.CheckLadder(p.Iterator.Current()); ok {
 			p.Iterator.SetIdxByCoordinate(s.End)
-			fmt.Println("Ladder found, Updated Position: ", p.Iterator.Current().String())
+			fmt.Println("Ladder found, Updated Position: ", p.Iterator.Current())
 		}
 
 		if p.Iterator.IsLast() {
 			fmt.Printf("Player %v win the game", p.Name)
 			return
 		}
+
+		fmt.Println("________________________________________________________________-")
 	}
 }
